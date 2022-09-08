@@ -35,7 +35,7 @@ int main(void)
 		if (nread < 0)
 		{
 			puts("Getline error.");
-			exit (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 		token = strtok(lineptr, delim);
 		if (token == NULL)
@@ -55,8 +55,10 @@ int main(void)
 		}
 		if (childpid != 0)
 		{
-			exe_status = execve(argv[0], argv, envp);
-			printf("execve status: %d\n", exe_status);
+			exe_status = execve
+				(argv[0], argv, envp);
+			printf("execve status: %d\n",
+			       exe_status);
 			/*_exit(EXIT_SUCCESS);*/
 			sleep(.1);
 		}
