@@ -1,7 +1,7 @@
-#ifndef MYGETLINE
+/**#ifndef MYGETLINE
 #define MYGETLINE
 ssize_t mygetline(char **restrict buf, size_t *restrict n, int *restrict stream);
-#endif
+#endif*/
 
 #ifndef MAXLINE
 #define MAXLINE 1000

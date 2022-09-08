@@ -55,10 +55,8 @@ int main(void)
 		}
 		if (childpid != 0)
 		{
-			exe_status = execve
-				(argv[0], argv, envp);
-			printf("execve status: %d\n",
-			       exe_status);
+			exe_status = execve(argv[0], argv, envp);
+			printf("execve status: %d\n", exe_status);
 			/*_exit(EXIT_SUCCESS);*/
 			sleep(.1);
 		}
