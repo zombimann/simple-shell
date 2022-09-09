@@ -17,27 +17,33 @@ int main(void)
 	while (1)
 	{
 		ssize_t nread;
-		char *lineptr, *token, *delim, *argv[2];
+		char *lineptr, *token, *argv[2];
 		char *envp[] = {NULL};
 
 		size_t *n, m;
 		pid_t childpid;
 
-		int wstatus, exe_status;
+		int wstatus, exe_status, chars;
 
 		/*FILE *stream;*/
 		printf("Zombi$ ");
 		lineptr = malloc(*n);
 		/**stream = stdin;*/
 		n = &m;
-		delim = " ";
+/*		delim = " ";*/
 		nread = getline(&lineptr, n, stdin);
 		if (nread < 0)
 		{
 			puts("Getline error.");
 			exit(EXIT_FAILURE);
 		}
-		token = strtok(lineptr, delim);
+		chars = strlen(lineptr);
+		if (lineptr[chars - 1] == '\n')
+		{
+			lineptr[chars - 1] = '\0';
+			--chars;
+		}
+		token = lineptr; /*strtok(lineptr, delim);*/
 		if (token == NULL)
 		{
 			puts("strtok error.");
@@ -45,7 +51,6 @@ int main(void)
 		}
 
 		argv[0] = token;
-		printf("%s\n", token);
 		argv[1] = NULL;
 		childpid = fork();
 		if (childpid < 0)
@@ -55,13 +60,14 @@ int main(void)
 		}
 		if (childpid != 0)
 		{
+			printf("%s", token);
 			exe_status = execve(argv[0], argv, envp);
 			printf("execve status: %d\n", exe_status);
 			/*_exit(EXIT_SUCCESS);*/
 			sleep(.1);
 		}
 		else
-			wait(&wstatus);
+  			wait(&wstatus);
 		free(lineptr);
 
 	}
