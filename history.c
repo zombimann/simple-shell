@@ -43,11 +43,15 @@ int write_history(info_t *info)
 	free(filename);
 	if (fd == -1)
 		return (-1);
-	for (utfd(BUF_FLUSH, fd);
+	for (node = info->history; node; node = node->next)
+	{
+		_putsfd(node->str, fd);
+		_putfd('\n', fd);
+	}
+	_putfd(BUF_FLUSH, fd);
 	close(fd);
 	return (1);
 }
-
 /**
  * read_history - reads history from file
  * @info: the parameter struct
@@ -96,7 +100,6 @@ int read_history(info_t *info)
 	renumber_history(info);
 	return (info->histcount);
 }
-
 /**
  * build_history_list - adds entry to a history linked list
  * @info: Structure containing potential arguments. Used to maintain
