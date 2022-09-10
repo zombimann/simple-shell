@@ -35,7 +35,6 @@ int unset_alias(info_t *info, char *str)
 	*p = c;
 	return (ret);
 }
-
 /**
  * set_alias - sets alias to string
  * @info: parameter struct
@@ -43,34 +42,7 @@ int unset_alias(info_t *info, char *str)
  *
  * Return: Always 0 on success, 1 on error
  */
-in1);
-}
-
-/**
- * _myalias - mimicsing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
-NULL;
-	list_t *node = NULL;
-
-	if (info->argc == 1)
-	{
-		node = info->alias;
-		while (node)
-		{
-			print_alias(node);
-			node = node->next;
-		}
-		return (0);
-	}
-	for (i = 1; info->argv[
-			set_alias(info, info->argv[i]);
-		else
-			print_alias(node_starts_with(info->alias, info->argv[i], '='));
-	}
-
-	return (0);
-}t set_alias(info_t *info, char *str)
+int set_alias(info_t *info, char *str)
 {
 	char *p;
 
@@ -80,7 +52,8 @@ NULL;
 	if (!*++p)
 		return (unset_alias(info, str));
 
-	unset_alias(info, sNULL);
+	unset_alias(info, str);
+	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 
 /**
@@ -105,7 +78,6 @@ int print_alias(list_t *node)
 	}
 	return (1);
 }
-
 /**
  * _myalias - mimics the alias builtin (man alias)
  * @info: Structure containing potential arguments. Used to maintain

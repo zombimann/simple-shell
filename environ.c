@@ -42,7 +42,8 @@ char *_getenv(info_t *info, const char *name)
  *  Return: Always 0
  */
 int _mysetenv(info_t *info)
-->argc != 3)
+{
+	if (info->argc != 3)
 	{
 		_eputs("Incorrect number of arguements\n");
 		return (1);
@@ -51,7 +52,6 @@ int _mysetenv(info_t *info)
 		return (0);
 	return (1);
 }
-
 /**
  * _myunsetenv - Remove an environment variable
  * @info: Structure containing potential arguments. Used to maintain

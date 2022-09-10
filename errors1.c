@@ -40,9 +40,19 @@ void print_error(info_t *info, char *estr)
 	_eputs(info->fname);
 	_eputs(": ");
 	print_d(info->line_count, STDERR_FILENO);
-	_er to write to
+	_eputs(": ");
+	_eputs(info->argv[0]);
+	_eputs(": ");
+	_eputs(estr);
+}
+/**
+ * print_d - function prints a decimal (integer) number (base 10)
+ * @input: the input
+ * @fd: the filedescriptor to write to
  *
- *nput, int fd)
+ * Return: number of characters printed
+ */
+int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
@@ -58,7 +68,10 @@ void print_error(info_t *info, char *estr)
 	}
 	else
 		_abs_ = input;
-	current = __ / i)
+	current = _abs_;
+	for (i = 1000000000; i > 1; i /= 10)
+	{
+		if (_abs_ / i)
 		{
 			__putchar('0' + current / i);
 			count++;
@@ -79,7 +92,11 @@ void print_error(info_t *info, char *estr)
  *
  * Return: string
  */
-char *convert_number(long int num, int base,char sign = 0;
+char *convert_number(long int num, int base, int flags)
+{
+	static char *array;
+	static char buffer[50];
+	char sign = 0;
 	char *ptr;
 	unsigned long n = num;
 
@@ -102,8 +119,8 @@ char *convert_number(long int num, int base,char sign = 0;
 		*--ptr = sign;
 	return (ptr);
 }
-
-/*#' with '\0'
+/**
+ * remove_comments - function replaces first instance of '#' with '\0'
  * @buf: address of the string to modify
  *
  * Return: Always 0;
@@ -119,4 +136,3 @@ void remove_comments(char *buf)
 			break;
 		}
 }
-
