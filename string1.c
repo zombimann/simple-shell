@@ -1,4 +1,3 @@
-
 #include "shell.h"
 
 /**
@@ -45,7 +44,6 @@ char *_strdup(const char *str)
 		ret[length] = *--str;
 	return (ret);
 }
-
 /**
  *_puts - prints an input string
  *@str: the string to be printed
